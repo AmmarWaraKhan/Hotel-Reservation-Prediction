@@ -11,9 +11,9 @@ WORKDIR /app
 # Install system dependencies required by LightGBM
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
-    && apt-get-clean \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
+    
 COPY . . 
 
 RUN pip install --no-cache-dir -e . 
