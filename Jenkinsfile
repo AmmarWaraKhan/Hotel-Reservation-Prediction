@@ -25,19 +25,6 @@ pipeline {
             }
         }
 
-        stage('Setting up Virtual Environment & Install Dependencies'){
-            steps{
-                script{
-                    sh '''
-                    python3 -m venv ${VENV_DIR}
-                    . ${VENV_DIR}/bin/activate
-                    pip install --upgrade pip
-                    pip install -e .
-                    '''
-                }
-            }
-        }
-
         stage('Build & Push Docker Image to GCR'){
             steps{
                 withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
